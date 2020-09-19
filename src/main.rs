@@ -15,9 +15,13 @@ mod other {
     }
 }
 
-#[get("/hello")]
-pub fn hello() -> &'static str {
-    "Hello, outside world!"
+#[get("/hello/<name>/<age>/<cool>")]
+fn hello(name: String, age: u8, cool: bool) -> String {
+    if cool {
+        format!("You're a cool {} year old, {}!", age, name)
+    } else {
+        format!("{}, we need to talk about your coolness.", name)
+    }
 }
 
 use other::world;
